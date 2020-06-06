@@ -1,0 +1,14 @@
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.csprojAssemblyReference.cache
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.Login.resources
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.Properties.Resources.resources
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.csproj.GenerateResource.cache
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.csproj.CoreCompileInputs.cache
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\bin\Debug\BNSManagement.exe
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\bin\Debug\BNSManagement.pdb
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.exe
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.pdb
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.User.resources
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.category.resources
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.Shop.resources
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\bin\Debug\BNSManagement.exe.config
+C:\Users\KDxR\Desktop\Project\BNSManagement\BNSManagement\obj\Debug\BNSManagement.Reloaded.resources
