@@ -53,6 +53,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addcategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addcategory.Designer.cs">
+      <DependentUpon>Addcategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="category.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Addcategory.resx">
+      <DependentUpon>Addcategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="category.resx">
       <DependentUpon>category.cs</DependentUpon>
     </EmbeddedResource>

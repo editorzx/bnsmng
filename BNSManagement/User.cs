@@ -28,6 +28,7 @@ namespace BNSManagement
                 globals.uForm.shop_btn.Enabled = true;
                 globals.uForm.connect_btn.Enabled = false;
                 globals.uForm.button5.Enabled = true;
+                globals.uForm.button2.Enabled = true;
             }
         }
 
@@ -59,6 +60,13 @@ namespace BNSManagement
         private void button5_Click(object sender, EventArgs e)
         {
             Reloaded ct = new Reloaded();
+            ct.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Addcategory ct = new Addcategory();
             ct.Show();
             this.Hide();
         }
