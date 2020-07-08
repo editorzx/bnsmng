@@ -20,6 +20,7 @@ namespace BNSManagement.SourceFile
                 globals.uForm.cat_btn.Enabled = true;
                 globals.uForm.shop_btn.Enabled = true;
                 globals.uForm.button5.Enabled = true;
+                globals.uForm.button2.Enabled = true;
                 globals.Server = Ip;
                 globals.User = user;
                 globals.Pass = pass;

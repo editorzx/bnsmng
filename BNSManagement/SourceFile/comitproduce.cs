@@ -25,13 +25,13 @@ namespace BNSManagement.SourceFile
             string CommandText = "SELECT TOP 1 GoodsId FROM Goods ORDER BY GoodsId DESC ";
             SqlCommand rungood = new SqlCommand(CommandText, CN);
             CN.Open();
-            Int32 goodsID = (Int32)rungood.ExecuteScalar()+1;
+            int goodsID = Convert.ToInt32(rungood.ExecuteScalar());
             CN.Close();
 
             SqlCommand SqlCom = new SqlCommand("p_AddGoodsCore", CN);
             SqlCom.CommandType = CommandType.StoredProcedure;
 
-            SqlCom.Parameters.Add("@GoodsId", SqlDbType.Int).Value = goodsID;
+            SqlCom.Parameters.Add("@GoodsId", SqlDbType.Int).Value = ++goodsID;
             SqlCom.Parameters.Add("@GoodsName", SqlDbType.NVarChar).Value = name;
             SqlCom.Parameters.Add("@GoodsAppGroupCode", SqlDbType.VarChar).Value = "bnsgrnTH";
             SqlCom.Parameters.Add("@GoodsType", SqlDbType.SmallInt).Value = 3;
@@ -428,6 +428,116 @@ namespace BNSManagement.SourceFile
                 SqlCom.ExecuteNonQuery();
                 MessageBox.Show(i + "ItemBasicPrice.DB Add");
                 i++;
+                CN.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public static void CategoryMainAdd(string name)
+        {
+            string Conn = "Server=" + globals.Server + "; Database=GoodsDb; User Id=" + globals.User + ";Password=" + globals.Pass + ";";
+            SqlConnection CN = new SqlConnection(Conn);
+
+            string CommandText = "SELECT TOP 1 CategoryId FROM Categories ORDER BY CategoryId DESC ";
+            SqlCommand rungood = new SqlCommand(CommandText, CN);
+            CN.Open();
+            Int32 cateID = Convert.ToInt32(rungood.ExecuteScalar());
+            CN.Close();
+
+            string CommandText2 = "SELECT TOP 1 DisplayOrder FROM Categories where ParentCategoryId=48 ORDER BY DisplayOrder DESC ";
+            SqlCommand rungood2 = new SqlCommand(CommandText2, CN);
+            CN.Open();
+            Int32 displayID = Convert.ToInt32(rungood2.ExecuteScalar());
+            CN.Close();
+
+            SqlCommand SqlCom = new SqlCommand("p_AddCategoryCore", CN);
+            SqlCom.CommandType = CommandType.StoredProcedure;
+            SqlCom.Parameters.Add("@CategoryId", SqlDbType.SmallInt).Value = ++cateID;
+            SqlCom.Parameters.Add("@CategoryName", SqlDbType.NVarChar).Value = name;
+            SqlCom.Parameters.Add("@AppGroupCode", SqlDbType.VarChar).Value = "bnsgrnTH";
+            SqlCom.Parameters.Add("@IsDisplayable", SqlDbType.Bit).Value = 1;
+            SqlCom.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = ++displayID;
+            SqlCom.Parameters.Add("@ChangerAdminAccount", SqlDbType.VarChar).Value = "KDXR";
+            SqlCom.Parameters.Add("@CurrencyGroupId", SqlDbType.SmallInt).Value = 71;
+            SqlCom.Parameters.Add("@ParentCategoryId", SqlDbType.SmallInt).Value = 48;
+            SqlCom.Parameters.Add("@CategoryData", SqlDbType.VarChar).Value = "{\"CategoryType\":[\"01\"]}";
+            try
+            {
+                CN.Open();
+                SqlCom.ExecuteNonQuery();
+                MessageBox.Show("Category.DB Add");
+                CN.Close();
+                CategoryDisplayAdd(cateID,name);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public static void CategoryMainAdd(int getcate,string name)
+        {
+            string Conn = "Server=" + globals.Server + "; Database=GoodsDb; User Id=" + globals.User + ";Password=" + globals.Pass + ";";
+            SqlConnection CN = new SqlConnection(Conn);
+
+            string CommandText = "SELECT TOP 1 CategoryId FROM Categories ORDER BY CategoryId DESC ";
+            SqlCommand rungood = new SqlCommand(CommandText, CN);
+            CN.Open();
+            int cateID = Convert.ToInt32(rungood.ExecuteScalar());
+            CN.Close();
+
+            string CommandText2 = "SELECT TOP 1 DisplayOrder FROM Categories where ParentCategoryId="+ getcate + " ORDER BY DisplayOrder DESC ";
+            SqlCommand rungood2 = new SqlCommand(CommandText2, CN);
+            CN.Open();
+            int displayID = Convert.ToInt32(rungood2.ExecuteScalar());
+            CN.Close();
+
+            SqlCommand SqlCom = new SqlCommand("p_AddCategoryCore", CN);
+            SqlCom.CommandType = CommandType.StoredProcedure;
+            SqlCom.Parameters.Add("@CategoryId", SqlDbType.SmallInt).Value = ++cateID;
+            SqlCom.Parameters.Add("@CategoryName", SqlDbType.NVarChar).Value = name;
+            SqlCom.Parameters.Add("@AppGroupCode", SqlDbType.VarChar).Value = "bnsgrnTH";
+            SqlCom.Parameters.Add("@IsDisplayable", SqlDbType.Bit).Value = 1;
+            SqlCom.Parameters.Add("@DisplayOrder", SqlDbType.Int).Value = ++displayID;
+            SqlCom.Parameters.Add("@ChangerAdminAccount", SqlDbType.VarChar).Value = "KDXR";
+            SqlCom.Parameters.Add("@CurrencyGroupId", SqlDbType.SmallInt).Value = 71;
+            SqlCom.Parameters.Add("@ParentCategoryId", SqlDbType.SmallInt).Value = getcate;
+            SqlCom.Parameters.Add("@CategoryData", SqlDbType.VarChar).Value = "{\"CategoryType\":[\"01\"]}";
+            try
+            {
+                CN.Open();
+                SqlCom.ExecuteNonQuery();
+                MessageBox.Show("Category.DB Add");
+                CN.Close();
+                CategoryDisplayAdd(cateID, name);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+
+        public static void CategoryDisplayAdd(int id, string name)
+        {
+            string Conn = "Server=" + globals.Server + "; Database=GoodsDb; User Id=" + globals.User + ";Password=" + globals.Pass + ";";
+            SqlConnection CN = new SqlConnection(Conn);
+
+            SqlCommand SqlCom = new SqlCommand("p_AddCategoryDisplayCore", CN);
+            SqlCom.CommandType = CommandType.StoredProcedure;
+            SqlCom.Parameters.Add("@CategoryId", SqlDbType.SmallInt).Value = id;
+            SqlCom.Parameters.Add("@LanguageCode", SqlDbType.SmallInt).Value = 11;
+            SqlCom.Parameters.Add("@CategoryDisplayName", SqlDbType.NVarChar).Value = name;
+            SqlCom.Parameters.Add("@CategoryDisplayDescription", SqlDbType.NVarChar).Value = "";
+            try
+            {
+                CN.Open();
+                SqlCom.ExecuteNonQuery();
+                MessageBox.Show("CategoryDisplay.DB Add");
                 CN.Close();
             }
             catch (Exception ex)
